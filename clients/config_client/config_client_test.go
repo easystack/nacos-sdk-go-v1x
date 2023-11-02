@@ -24,14 +24,14 @@ import (
 	"testing"
 	"time"
 
+	"github.com/easystack/nacos-sdk-go-v1x/clients/cache"
+	"github.com/easystack/nacos-sdk-go-v1x/clients/nacos_client"
+	"github.com/easystack/nacos-sdk-go-v1x/common/constant"
+	"github.com/easystack/nacos-sdk-go-v1x/common/http_agent"
+	"github.com/easystack/nacos-sdk-go-v1x/mock"
+	"github.com/easystack/nacos-sdk-go-v1x/util"
+	"github.com/easystack/nacos-sdk-go-v1x/vo"
 	"github.com/golang/mock/gomock"
-	"github.com/nacos-group/nacos-sdk-go/clients/cache"
-	"github.com/nacos-group/nacos-sdk-go/clients/nacos_client"
-	"github.com/nacos-group/nacos-sdk-go/common/constant"
-	"github.com/nacos-group/nacos-sdk-go/common/http_agent"
-	"github.com/nacos-group/nacos-sdk-go/mock"
-	"github.com/nacos-group/nacos-sdk-go/util"
-	"github.com/nacos-group/nacos-sdk-go/vo"
 	"github.com/stretchr/testify/assert"
 )
 

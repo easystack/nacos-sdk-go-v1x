@@ -26,10 +26,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nacos-group/nacos-sdk-go/clients/cache"
-	"github.com/nacos-group/nacos-sdk-go/common/logger"
-	"github.com/nacos-group/nacos-sdk-go/model"
-	"github.com/nacos-group/nacos-sdk-go/util"
+	"github.com/easystack/nacos-sdk-go-v1x/clients/cache"
+	"github.com/easystack/nacos-sdk-go-v1x/common/logger"
+	"github.com/easystack/nacos-sdk-go-v1x/model"
+	"github.com/easystack/nacos-sdk-go-v1x/util"
 )
 
 type HostReactor struct {
@@ -225,4 +225,45 @@ func (s instanceSorter) Less(i, j int) bool {
 // sort instances
 func sortInstance(instances []model.Instance) {
 	sort.Sort(instanceSorter(instances))
+}
+
+func (hr *HostReactor) GetAllNamespaces() []model.Namespace {
+	data := make([]model.Namespace, 0)
+	result, err := hr.serviceProxy.GetAllNamespaces()
+	if err != nil {
+		logger.Errorf("GetAllNamespaces return error! err:%+v", err)
+		return data
+	}
+
+	tempData := struct {
+		Code    int32             `json:"code"`
+		Message string            `json:"message"`
+		Data    []model.Namespace `json:"data"`
+	}{}
+	err = json.Unmarshal([]byte(result), &tempData)
+	if err != nil {
+		logger.Errorf("GetAllNamespaces result json.Unmarshal error!")
+		return data
+	}
+	if tempData.Code != 200 {
+		logger.Errorf("GetAllNamespaces failed!code:%v message:%s", tempData.Code, tempData.Message)
+	}
+	data = tempData.Data
+	return data
+}
+
+func (hr *HostReactor) GetCatalogServices(nameSpace string, pageNo, pageSize uint32) model.CatalogServiceList {
+	data := model.CatalogServiceList{}
+	result, err := hr.serviceProxy.GetCatalogServiceList(nameSpace, pageNo, pageSize)
+	if err != nil {
+		logger.Errorf("GetCatalogServices return error! namespace:%s err:%+v", nameSpace, err)
+		return data
+	}
+
+	err = json.Unmarshal([]byte(result), &data)
+	if err != nil {
+		logger.Errorf("GetCatalogServices result json.Unmarshal error! namespace:%s", nameSpace)
+		return data
+	}
+	return data
 }

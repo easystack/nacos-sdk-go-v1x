@@ -21,7 +21,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nacos-group/nacos-sdk-go/common/file"
+	"github.com/easystack/nacos-sdk-go-v1x/common/file"
 
 	"github.com/stretchr/testify/assert"
 )
