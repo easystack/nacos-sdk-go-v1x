@@ -20,10 +20,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nacos-group/nacos-sdk-go/common/nacos_server"
+	"github.com/easystack/nacos-sdk-go-v1x/common/nacos_server"
 
-	"github.com/nacos-group/nacos-sdk-go/model"
-	"github.com/nacos-group/nacos-sdk-go/util"
+	"github.com/easystack/nacos-sdk-go-v1x/model"
+	"github.com/easystack/nacos-sdk-go-v1x/util"
 	"github.com/stretchr/testify/assert"
 )
 

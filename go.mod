@@ -1,4 +1,4 @@
-module github.com/nacos-group/nacos-sdk-go
+module github.com/easystack/nacos-sdk-go-v1x
 
 go 1.15
 
